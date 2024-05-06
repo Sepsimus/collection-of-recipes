@@ -1,0 +1,7 @@
+.main__wrapper{
+    margin: 24px;
+    margin-bottom: 48px;
+}
+.main__wrapper:last-of-type{
+    margin-bottom: 24px;
+}

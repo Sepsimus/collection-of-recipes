@@ -1,0 +1,11 @@
+.main__button_type_luck{
+    opacity: 0.45;
+}
+
+.main__button_type_luck:hover{
+    cursor: pointer;
+    background: #1890FF;
+    border-color: #1890FF;
+    color: #FFFFFF;
+    opacity: 1;
+}

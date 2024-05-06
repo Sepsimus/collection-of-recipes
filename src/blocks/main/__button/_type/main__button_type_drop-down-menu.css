@@ -1,0 +1,18 @@
+.main__button_type_drop-down-menu{
+    position: relative;
+    max-width: 285px;
+    width: 100%;
+    text-align: left;
+    padding: 8px 16px;
+    height: 38px;
+}
+
+.main__button_type_drop-down-menu::before{
+    content: '';
+    background-image: url(../../../../image/drop-down-arrow.svg);
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    right: 13px;
+    top: 13px;
+}

@@ -1,0 +1,10 @@
+.main__title-h5{
+    pointer-events: none;
+    margin-bottom: 24px;
+    margin-top: 0px;
+    font-family: "Roboto", "Arial", sans-serif;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.45;
+}

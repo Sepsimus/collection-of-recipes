@@ -1,0 +1,7 @@
+.main__wrapper_type_filter{
+    display: flex;
+    flex-direction: column;
+    min-height: 198px;
+    justify-content: space-between;
+    margin-top: 72px;
+}

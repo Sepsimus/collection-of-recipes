@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  background-color: #EFEFEF;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.button:hover{
+  cursor: pointer;
 }
+
+.button_inactive{
+  opacity: 0.45;
+  pointer-events: none
+}
+
+@import url(./vendor/normalize.css);
+
+@import url(./vendor/font.css);
+
+@import url(./blocks/page/page.css);
+
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__title/header__title.css);
+
+@import url(./blocks/main/main.css);
+@import url(./blocks/main/__button/main__button.css);
+@import url(./blocks/main/__button/_type/main__button_type_drop-down-menu.css);
+@import url(./blocks/main/__button/_type/main__button_type_radio.css);
+@import url(./blocks/main/__button/_type/main__button_type_resert.css);
+@import url(./blocks/main/__button/_type/main__button_type_luck.css);
+@import url(./blocks/main/__description/main__description.css);
+@import url(./blocks/main/__logo/main__logo.css);
+@import url(./blocks/main/__title-h4/main__title-h4.css);
+@import url(./blocks/main/__title-h5/main__title-h5.css);
+@import url(./blocks/main/__recipes/main__recipes.css);
+@import url(./blocks/main/__settings/main__settings.css);
+@import url(./blocks/main/__wrapper/main__wrapper.css);
+@import url(./blocks/main/__drop-down-menu/main__drop-down-menu.css);
+@import url(./blocks/main/__wrapper/_type/main__wrapper_type_filter.css);
+@import url(./blocks/main/__wrapper/_type/main__wrapper_type_setting.css);
+@import url(./blocks/main/__wrapper/_type/main__wrapper_type_text.css);
+@import url(./blocks/main/__wrapper/_type/main__wrapper_type_complexity.css);
+@import url(./blocks/main/__wrapper/_type/main__wrapper_type_description.css);

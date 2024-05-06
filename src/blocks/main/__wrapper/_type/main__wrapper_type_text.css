@@ -1,0 +1,7 @@
+.main__wrapper_type_text{
+    margin-top: 0px;
+    min-height: 198px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

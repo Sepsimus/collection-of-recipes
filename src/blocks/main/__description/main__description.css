@@ -1,0 +1,17 @@
+.main__description{
+    pointer-events: none;
+    margin: 0px;
+    /* margin: 18px 24px; */
+    font-family: "Roboto", "Arial", sans-serif;
+    line-height: 18px;
+    font-size: 14px;
+}
+/* 
+.main__description:first-of-type{
+    margin-top: 0px;
+}
+
+.main__description:last-of-type{
+    margin-bottom: 0px;
+    padding-bottom: 24px;
+} */
