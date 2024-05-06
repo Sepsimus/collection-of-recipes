@@ -1,0 +1,7 @@
+.card{
+    max-width: 487px;
+    max-height: 387px;
+    display: flex;
+    background: #FFFFFF;
+    line-height: 0;
+}

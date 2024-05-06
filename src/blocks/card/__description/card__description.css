@@ -1,0 +1,9 @@
+.card__description{
+    pointer-events: none;
+    margin: 0px;
+    padding: 24px 24px 0px 24px;
+    font-family: "Roboto", "Arial", sans-serif;
+    line-height: 12px;
+    font-size: 10px;
+    opacity: 0.45;
+}

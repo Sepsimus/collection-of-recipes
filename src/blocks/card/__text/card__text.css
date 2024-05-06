@@ -1,0 +1,8 @@
+.card__text{
+    pointer-events: none;
+    margin: 0px;
+    font-family: "Roboto", "Arial", sans-serif;
+    line-height: 24px;
+    font-size: 12px;
+    opacity: 0.85;
+}

@@ -1,0 +1,8 @@
+.main__cards{
+    margin: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 12px;
+    grid-row-gap: 8px;    
+    min-height: 716px;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from '../image/logo.png'
+import Card from "./Card";
 
 function Main(){
 
@@ -77,7 +78,18 @@ function Main(){
             </section>
 
             <section className="main__recipes" id={"recipes"}>
-                
+                <h2 className="main__title-h2">Найденные рецепты<span className="main__number-recipes">299</span></h2>
+                <div className="main__cards">
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+                <div className="main__pagination">
+
+                </div>
             </section>
         </div>
     )

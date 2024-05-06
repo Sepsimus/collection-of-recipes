@@ -1,0 +1,7 @@
+.card__star-img{
+    margin-right: 2px;
+}
+
+.card__star-img:last-of-type{
+    margin: 0px;
+}

@@ -1,0 +1,11 @@
+.main__title-h2{
+    background: #FFFFFF;
+    pointer-events: none;
+    margin: 0px;
+    padding: 16px 24px;
+    font-family: "Roboto", "Arial", sans-serif;
+    line-height: 24px;
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0.85;
+}
