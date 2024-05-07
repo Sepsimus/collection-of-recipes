@@ -1,3 +1,7 @@
 .main__pagination{
-    
+    padding-top: 12px;
+    margin: 12px auto;
+    display: flex;
+    max-width: 432px;
+    justify-content: space-between;
 }

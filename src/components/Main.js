@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from '../image/logo.png'
-import Card from "./Card";
+import Cards from "./Cards";
 
 function Main(){
 
+    const [page, setPage] = useState(0);
     const [checkedValue, setCheckedValue] = useState('Любая');
-
+    const recipes = JSON.parse(localStorage.getItem('recipes')).recipes;
+    const lastPageNumber = Math.ceil(recipes.length/6);
+    let pagi;
+    
     function changeCheckedValue(event){
         setCheckedValue(event.target.value);
+    }
+
+    useEffect(() =>{
+        pagi = paginationDraw(page)
+    },[page])
+
+    function paginationDraw(currentPage){
+        let paginationArray = [];
+        
+        let startPage;
+        currentPage < 1 ? startPage = 2 : startPage = currentPage - 1;
+        let endPage;
+        startPage + 4 >= (lastPageNumber - 1) ? endPage = lastPageNumber - 1 : endPage = startPage + 4;
+        for(let i = startPage; i <= endPage; i++){
+            paginationArray.push(
+            <button className={`button main__button ${page === i-1 && 'button_pagination_active'} main__button_type_pagination main__button_type_visible-number-of-page`} onClick={(e) => {setPage(i-1)}} key={i}>{i}</button>
+            )
+        }
+        if(currentPage - 1 > 2) {
+            paginationArray.unshift(<div className="main__dots"  key={-2} />)
+            paginationArray.push(<div className="main__dots" key={-1}/>)
+        }
+        return(paginationArray)
     }
 
     return(
@@ -45,6 +72,8 @@ function Main(){
                             <li className='main__drop-down-item main__drop-down-item_type_breakfast' id={'breakfast'}>Завтрак</li>
                             <li className='main__drop-down-item main__drop-down-item_type_lunch' id={'lunch'}>Обед</li>
                             <li className='main__drop-down-item main__drop-down-item_type_dinner' id={'dinner'}>Ужин</li>
+                            <li className='main__drop-down-item main__drop-down-item_type_side-dish' id={'side-dish'}>Закуски</li>
+                            <li className='main__drop-down-item main__drop-down-item_type_drink' id={'drink'}>Напитки</li>
                         </ul>
                     </div>
                     <div className='main__wrapper main__wrapper_type_setting'>
@@ -62,7 +91,7 @@ function Main(){
                                 <input className="main__button_type_radio-main" type="radio" id='medium' value='Средняя' checked={checkedValue==="Средняя" ? true : false} onChange={changeCheckedValue}/>
                                 <span className="main__button_span">Средняя</span>
                             </label>
-                            <label className='button main__button main__button_type_radio' htmlFor='high'>
+                            <label className='button button_inactive main__button main__button_type_radio' htmlFor='high'>
                                 <input className="main__button_type_radio-main" type="radio" id='high' value='Высокая' checked={checkedValue==="Высокая" ? true : false} onChange={changeCheckedValue}/>
                                 <span className="main__button_span">Высокая</span>
                             </label>
@@ -78,17 +107,15 @@ function Main(){
             </section>
 
             <section className="main__recipes" id={"recipes"}>
-                <h2 className="main__title-h2">Найденные рецепты<span className="main__number-recipes">299</span></h2>
-                <div className="main__cards">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                </div>
+                <h2 className="main__title-h2">Найденные рецепты<span className="main__number-recipes">{recipes.length}</span></h2>
+                <Cards 
+                    page={page}/>
                 <div className="main__pagination">
-
+                    <button className={`button main__button main__button_type_pagination main__button_type_prev  ${page ===  0 && "button_inactive"}`} onClick={(e) => {setPage(page-1)}}></button>
+                    <button className={`button ${page === 0 && 'button_pagination_active'} main__button main__button_type_pagination main__button_type_first-page`} onClick={(e) => {setPage(0)}}>1</button>
+                    {paginationDraw(0)}
+                    <button className={`button main__button ${page === 4 && 'button_pagination_active'} main__button_type_pagination main__button_type_last-page`} onClick={(e) => {setPage(lastPageNumber - 1)}}>{lastPageNumber}</button>
+                    <button className={`button main__button main__button_type_pagination main__button_type_next ${page ===  lastPageNumber - 1 && "button_inactive"}`} onClick={(e) => {setPage(page+1)}}></button>
                 </div>
             </section>
         </div>

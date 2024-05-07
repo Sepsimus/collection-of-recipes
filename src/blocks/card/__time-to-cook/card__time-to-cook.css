@@ -1,3 +1,4 @@
 .card__time-to-cook{
+    pointer-events: none;
     margin-left: 6px;
 }

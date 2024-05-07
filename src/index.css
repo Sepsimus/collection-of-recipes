@@ -11,6 +11,11 @@ body{
   pointer-events: none
 }
 
+.button_pagination_active{
+  border-color: #1890FF;
+  color: #1890FF
+}
+
 @import url(./vendor/normalize.css);
 
 @import url(./vendor/font.css);
@@ -26,6 +31,13 @@ body{
 @import url(./blocks/main/__button/_type/main__button_type_radio.css);
 @import url(./blocks/main/__button/_type/main__button_type_resert.css);
 @import url(./blocks/main/__button/_type/main__button_type_luck.css);
+@import url(./blocks/main/__button/_type/main__button_type_first-page.css);
+@import url(./blocks/main/__button/_type/main__button_type_last-page.css);
+@import url(./blocks/main/__button/_type/main__button_type_next.css);
+@import url(./blocks/main/__button/_type/main__button_type_prev.css);
+@import url(./blocks/main/__button/_type/main__button_type_visible-number-of-page.css);
+@import url(./blocks/main/__button/_type/main__button_type_pagination.css);
+@import url(./blocks/main/__dots/main__dots.css);
 @import url(./blocks/main/__description/main__description.css);
 @import url(./blocks/main/__logo/main__logo.css);
 @import url(./blocks/main/__title-h4/main__title-h4.css);
@@ -39,10 +51,11 @@ body{
 @import url(./blocks/main/__wrapper/_type/main__wrapper_type_text.css);
 @import url(./blocks/main/__wrapper/_type/main__wrapper_type_complexity.css);
 @import url(./blocks/main/__wrapper/_type/main__wrapper_type_description.css);
-@import url(./blocks/main/__cards/main__cards.css);
 @import url(./blocks/main/__number-recipes/main__number-recipes.css);
 @import url(./blocks/main/__title-h2/main__title-h2.css);
 @import url(./blocks/main/__pagination/main__pagination.css);
+
+@import url(./blocks/cards/cards.css);
 
 @import url(./blocks/card/card.css);
 @import url(./blocks/card/__img/card__img.css);
