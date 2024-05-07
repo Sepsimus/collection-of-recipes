@@ -1,0 +1,5 @@
+.dish__button_type_next{
+    background-image: url(../../../../image/pagination-arrow.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,3 @@
+.dish__step_first::after{
+    background-image: url(../../../../image/recipe-dot-first.svg);
+}

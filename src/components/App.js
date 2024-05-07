@@ -22,8 +22,8 @@ function App() {
   return (
     <div className="page">
       <Header />
-      {/* <Main /> */}
-      <Dish />
+      <Main />
+      {/* <Dish /> */}
     </div>
   );
 }

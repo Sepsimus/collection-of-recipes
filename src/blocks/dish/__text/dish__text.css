@@ -1,0 +1,9 @@
+.dish__text{
+    pointer-events: none;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0px;
+    padding: 24px;
+    opacity: 0.85;
+}

@@ -1,0 +1,7 @@
+.dish__link{
+    display: block;
+    background-image: url(../../../image/ArrowBack.svg);
+    width: 17px;
+    height: 17px;
+    margin: 28px 0px 28px 24px;
+}

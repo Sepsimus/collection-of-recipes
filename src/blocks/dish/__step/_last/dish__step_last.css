@@ -1,0 +1,3 @@
+.dish__step_last::after{
+    background-image: url(../../../../image/end-dot.svg);
+}

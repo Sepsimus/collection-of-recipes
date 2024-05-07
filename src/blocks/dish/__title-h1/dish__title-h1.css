@@ -1,0 +1,10 @@
+.dish__title-h1{
+    pointer-events: none;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 0px;
+    padding: 22px 16px;
+    opacity: 0.85;
+}

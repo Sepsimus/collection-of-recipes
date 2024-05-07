@@ -1,0 +1,6 @@
+.dish__wrapper{
+    width: 465px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

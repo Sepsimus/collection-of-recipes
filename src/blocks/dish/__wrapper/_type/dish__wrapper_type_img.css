@@ -1,0 +1,16 @@
+.dish__wrapper_type_img{
+    position: relative;
+    max-width: 942px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.dish__wrapper_type_img::before{
+    z-index: -1;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #FFFFFF;
+    opacity: 50%;
+}

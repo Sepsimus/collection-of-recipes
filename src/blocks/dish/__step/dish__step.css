@@ -1,0 +1,21 @@
+.dish__step{
+    position: relative;
+    pointer-events: none;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0px;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+.dish__step::after{
+    left: -32px;
+    top: 0px;
+    position: absolute;
+    display: block;
+    content: '';
+    background-image: url(../../../image/recipe-dot.svg);
+    width: 23px;
+    height: 42px;
+}

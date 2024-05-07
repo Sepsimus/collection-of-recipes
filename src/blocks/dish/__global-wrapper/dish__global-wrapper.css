@@ -1,0 +1,5 @@
+.dish__global-wrapper{
+    display: flex;
+    justify-content: space-between;
+    min-height: 852px;
+}

@@ -1,0 +1,8 @@
+.dish__info{   
+    background: #FFFFFF;
+    max-width: 465px;
+}
+
+.dish__info:last-of-type{
+    min-height: 264px;
+}

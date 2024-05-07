@@ -1,0 +1,10 @@
+.dish__button{
+    box-sizing: border-box;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    border: 1px #D9D9D9 solid;
+    background: transparent;
+    opacity: 0.85;
+}
