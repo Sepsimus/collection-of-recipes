@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import mainApi from "../utils/mainApi";
 import Dish from "./Dish";
-import Header from "./Header";
 import Main from "./Main";
+import { Routes, Route} from "react-router-dom";
 
 function App() {
   const recipesApi = new mainApi({
     baseUrl: 'https://dummyjson.com'
   })
 
+
   useEffect(() => {
     recipesApi.getAllRecipes()
     .then((recipes) => {
-      localStorage.setItem('recipes', JSON.stringify(recipes))
+      localStorage.setItem('recipes', JSON.stringify(recipes));
     })
     .catch((err) => {
         console.log(`Ошибка:${err}. Запрос не выполнен`);
@@ -21,10 +22,17 @@ function App() {
 
   return (
     <div className="page">
-      <Header />
-      <Main />
-      {/* <Dish /> */}
-    </div>
+      <Routes>
+        <Route exact path ="/" element={
+          <Main />
+          }>
+        </Route>
+        <Route exact path ="/dish" element={
+            <Dish />
+          }>  
+        </Route>
+      </Routes>
+      </div>
   );
 }
 

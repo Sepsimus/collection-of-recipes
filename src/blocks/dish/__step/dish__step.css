@@ -1,4 +1,6 @@
 .dish__step{
+    border-left: 1px solid #0000000F;
+    padding-left: 21px;
     position: relative;
     pointer-events: none;
     font-family: "Roboto", "Arial", sans-serif;
@@ -6,16 +8,22 @@
     line-height: 22px;
     margin: 0px;
     opacity: 0.85;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .dish__step::after{
-    left: -32px;
-    top: 0px;
+    left: -6px;
+    top: 6px;
     position: absolute;
     display: block;
     content: '';
-    background-image: url(../../../image/recipe-dot.svg);
-    width: 23px;
-    height: 42px;
+    background-image: url(../../../image/dot.svg);
+    width: 10px;
+    height: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.dish__step:last-of-type{
+    border: none
 }

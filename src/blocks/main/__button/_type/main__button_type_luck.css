@@ -1,5 +1,14 @@
 .main__button_type_luck{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0.45;
+}
+
+
+.main__button_type_luck:visited{
+    color: #000000;
 }
 
 .main__button_type_luck:hover{

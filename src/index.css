@@ -69,6 +69,8 @@ body{
 @import url(./blocks/card/__hard/card__hard.css);
 @import url(./blocks/card/__time-to-cook/card__time-to-cook.css);
 @import url(./blocks/card/__star-img/card__star-img.css);
+@import url(./blocks/card/__link/card__link.css);
+
 
 @import url(./blocks/dish/dish.css);
 @import url(./blocks/dish/__global-wrapper/dish__global-wrapper.css);

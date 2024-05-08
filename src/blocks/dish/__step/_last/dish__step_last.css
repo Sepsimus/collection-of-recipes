@@ -1,3 +1,7 @@
 .dish__step_last::after{
+    left: -11px;
+    top: 0px;
     background-image: url(../../../../image/end-dot.svg);
+    width: 23px;
+    height: 42px;
 }
