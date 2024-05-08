@@ -37,6 +37,7 @@ body{
 @import url(./blocks/main/__button/_type/main__button_type_prev.css);
 @import url(./blocks/main/__button/_type/main__button_type_visible-number-of-page.css);
 @import url(./blocks/main/__button/_type/main__button_type_pagination.css);
+@import url(./blocks/main/__button/_type/main__button_type_drop-down-menu-open.css);
 @import url(./blocks/main/__dots/main__dots.css);
 @import url(./blocks/main/__description/main__description.css);
 @import url(./blocks/main/__logo/main__logo.css);
@@ -46,6 +47,8 @@ body{
 @import url(./blocks/main/__settings/main__settings.css);
 @import url(./blocks/main/__wrapper/main__wrapper.css);
 @import url(./blocks/main/__drop-down-menu/main__drop-down-menu.css);
+@import url(./blocks/main/__drop-down-menu/_open/main__drop-down-menu_open.css);
+@import url(./blocks/main/__drop-down-item/main__drop-down-item.css);
 @import url(./blocks/main/__wrapper/_type/main__wrapper_type_filter.css);
 @import url(./blocks/main/__wrapper/_type/main__wrapper_type_setting.css);
 @import url(./blocks/main/__wrapper/_type/main__wrapper_type_text.css);

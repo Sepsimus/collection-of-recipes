@@ -10,6 +10,10 @@ function Dish() {
         sessionStorage.setItem('page', Math.floor((allData.id-1)/6))
     },[allData])
 
+    function changeAllData(newAllData){
+        setAllData(newAllData);
+    }
+
     function dishSteps(){
         let stepsArray = [];
         stepsArray.push(
@@ -79,8 +83,8 @@ function Dish() {
                 <div className="dish__wrapper dish__wrapper_type_img">
                     <img className="dish__img" src={allData.image || dish} alt="Изображение блюда"/>
                     <div className="dish__pagination">
-                        <button className={`button dish__button dish__button_type_pagination dish__button_type_prev ${allData.id === 1 && 'button_inactive'}`} onClick={(e) => {setAllData(recipes[allData.id-2])}}></button>
-                        <button className={`button dish__button dish__button_type_pagination dish__button_type_next ${allData.id === recipes.length && 'button_inactive'}`} onClick={(e) => {setAllData(recipes[allData.id])}}></button>
+                        <button className={`button dish__button dish__button_type_pagination dish__button_type_prev ${allData.id === 1 && 'button_inactive'}`} onClick={(e) => {changeAllData(recipes[allData.id-2])}}></button>
+                        <button className={`button dish__button dish__button_type_pagination dish__button_type_next ${allData.id === recipes.length && 'button_inactive'}`} onClick={(e) => {changeAllData(recipes[allData.id])}}></button>
                     </div>
                 </div>
             </div>

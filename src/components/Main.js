@@ -6,36 +6,108 @@ import {Link} from "react-router-dom";
 
 function Main(){
 
-    const [page, setPage] = useState(parseInt(sessionStorage.getItem('page')) || 0);
-    const [checkedValue, setCheckedValue] = useState('Any');
     const cashRecipes = JSON.parse(localStorage.getItem('recipes')).recipes;
+    const [page, setPage] = useState(0);
+    const [isSecondMenuOpen, setIsSecondMenuOpen] = useState(false);
+    const [isFirstMenuOpen, setIsFirstMenuOpen] = useState(false);
+    const [searchByDifficulty, setSearchByDifuclt] = useState(sessionStorage.getItem('searchByDifficulty') || 'Any');
+    const [searchByMeal, setSearchByMeal] = useState(sessionStorage.getItem('searchByMeal') || 'All types');
+    const [searchByCountry, setSearchByCountry] = useState(sessionStorage.getItem('searchByCountry') || 'All country');
     const [recipes, setRecipes] = useState(cashRecipes || {});
     let randomMainImage = cashRecipes[2].image;
     let lastPageNumber = Math.ceil(recipes.length/6);
-    let isButtonInactive = checkedValue === 'Any' ? true : false;
-    
+    let isResetButtonInactive = (searchByDifficulty === 'Any' && searchByMeal === 'All types' && searchByCountry==="All country") ? true : false;
+
+    let mealTypesArray = [];
+    let countryTypesArray = [];
+
+    cashRecipes.forEach((recipe) => {
+        countryTypesArray.push(recipe.cuisine)
+        recipe.mealType.forEach(
+            (mealType) => mealTypesArray.push(mealType)
+        )
+    });
+    countryTypesArray = [...new Set(countryTypesArray)];
+    mealTypesArray = [ ...new Set(mealTypesArray)];
+
     function changeCheckedValue(event){
-        setCheckedValue(event.target.value);
+        setSearchByDifuclt(event.target.value);
+    }
+
+    function changeSecondMenuState(event){
+        event.stopPropagation()
+        setIsSecondMenuOpen(!isSecondMenuOpen);
+        setIsFirstMenuOpen(false);
+    }
+
+    function changeFirstMenuState(event){
+        event.stopPropagation()
+        setIsFirstMenuOpen(!isFirstMenuOpen);
+        setIsSecondMenuOpen(false);
     }
 
     useEffect(()=>{
-        if(checkedValue === 'Any') {
+        sessionStorage.setItem('searchByDifficulty', searchByDifficulty);
+        sessionStorage.setItem('searchByMeal', searchByMeal);
+        sessionStorage.setItem('searchByCountry', searchByCountry);
+        if(isResetButtonInactive) {
             setRecipes(cashRecipes)
             return
         }
-        let filteredRecipes = cashRecipes.filter((recipe) =>  recipe.difficulty === checkedValue )
+        let filteredRecipes = cashRecipes;
+        if(searchByDifficulty !=='Any'){
+            filteredRecipes = filteredRecipes.filter((recipe) =>  recipe.difficulty === searchByDifficulty )
+        }
+        if(searchByMeal !=='All types'){
+            filteredRecipes = filteredRecipes.filter((recipe) =>  recipe.mealType.includes(searchByMeal))
+        }
+        if(searchByCountry !=='All country'){
+            filteredRecipes = filteredRecipes.filter((recipe) =>  recipe.cuisine === searchByCountry)
+        }
         setRecipes(filteredRecipes);
         setPage(0);
-    }, [checkedValue])
+        sessionStorage.setItem('page', page);
+    }, [searchByDifficulty, searchByMeal, searchByCountry])
 
+    useEffect(() => {
+        setPage(parseInt(sessionStorage.getItem('page')) || 0);
+    },[])
 
     function refreshFilter(){
-        setCheckedValue('Any');
+        setSearchByDifuclt('Any');
+        setSearchByMeal('All types');
+        setSearchByCountry('All country')
     }
 
     function rememberPagiPage(page){
         setPage(page);
         sessionStorage.setItem('page', page);
+    }
+
+    function rememberSearchByMeal(event){
+        setSearchByMeal(event.target.id);
+    }
+
+    function rememberSearchByCountry(event){
+        setSearchByCountry(event.target.id);
+    }
+
+    function mealTypesDraw(){
+        let mealArray = [];
+        if(searchByMeal !== 'All types') mealArray.push(<li className='main__drop-down-item main__drop-down-item_type_breakfast' key={'All types'} onClick={rememberSearchByMeal} id={'All types'}>All types</li>)
+        for(let i = 0; i < mealTypesArray.length; i++){
+            mealArray.push(<li className='main__drop-down-item main__drop-down-item_type_breakfast' key={mealTypesArray[i]} onClick={rememberSearchByMeal} id={mealTypesArray[i]}>{mealTypesArray[i]}</li>)
+        }
+        return(mealArray)
+    }
+
+    function countryDraw(){
+        let countryArray = [];
+        if(searchByCountry !== 'All country') countryArray.push(<li className='main__drop-down-item main__drop-down-item_type_breakfast' key={'All country'} onClick={rememberSearchByCountry} id={'All country'}>All country</li>)
+        for(let i = 0; i < countryTypesArray.length; i++){
+            countryArray.push(<li className='main__drop-down-item main__drop-down-item_type_breakfast' key={countryTypesArray[i]} onClick={rememberSearchByCountry} id={countryTypesArray[i]}>{countryTypesArray[i]}</li>)
+        }
+        return(countryArray)
     }
 
     function paginationDraw(currentPage){
@@ -79,47 +151,42 @@ function Main(){
                     <div className='main__wrapper main__wrapper_type_filter'>
                         <div className='main__wrapper main__wrapper_type_setting'>
                             <h4 className='main__title-h4'>Кухня:</h4>
-                            <button className='button main__button main__button_type_drop-down-menu main__button_type_kitchen'>Все страны и регионы</button>
-                            <ul className='main__drop-down-menu main__drop-down-menu_type_kitchen'>
-                                <li className='main__drop-down-item main__drop-down-item_type_all' id={'all'}>Все страны и регионы</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_asia' id={'asia'}>Азия</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_italy' id={'italy'}>Италия</li>
-                            </ul>
+                            <button className={`button main__button main__button_type_drop-down-menu main__button_type_kitchen ${isFirstMenuOpen && 'main__button_type_drop-down-menu-open'}`} onClick={changeFirstMenuState} >{searchByCountry}
+                                <ul className={`main__drop-down-menu main__drop-down-menu_type_kitchen ${isFirstMenuOpen && 'main__drop-down-menu_open'}`}>
+                                    {countryDraw()}
+                                </ul>
+                            </button>
                         </div>
                         <div className='main__wrapper main__wrapper_type_setting'>
                             <h4 className='main__title-h4'>Тип блюда:</h4>
-                            <button className='button main__button main__button_type_drop-down-menu main__button_type_dish'>Все типы</button>
-                            <ul className='main__drop-down-menu main__drop-down-menu_type_dish'>
-                                <li className='main__drop-down-item main__drop-down-item_type_dish' id={'dish'}>Все типы</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_breakfast' id={'breakfast'}>Завтрак</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_lunch' id={'lunch'}>Обед</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_dinner' id={'dinner'}>Ужин</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_side-dish' id={'side-dish'}>Закуски</li>
-                                <li className='main__drop-down-item main__drop-down-item_type_drink' id={'drink'}>Напитки</li>
-                            </ul>
+                            <button className={`button main__button main__button_type_drop-down-menu main__button_type_dish ${isSecondMenuOpen && 'main__button_type_drop-down-menu-open'}`} onClick={changeSecondMenuState}>{searchByMeal}
+                                <ul className={`main__drop-down-menu main__drop-down-menu_type_dish ${isSecondMenuOpen && 'main__drop-down-menu_open'}`}>
+                                    {mealTypesDraw()}
+                                </ul>
+                            </button>
                         </div>
                         <div className='main__wrapper main__wrapper_type_setting'>
                             <h4 className='main__title-h4'>Сложность приготовления:</h4>
                             <div className="main__wrapper main__wrapper_type_complexity">
                                 <label className='button main__button main__button_type_radio' htmlFor='any'>
-                                    <input className="main__button_type_radio-main" type="radio" id='any' value='Any' checked={checkedValue==="Any" ? true : false} onChange={changeCheckedValue} />
+                                    <input className="main__button_type_radio-main" type="radio" id='any' value='Any' checked={searchByDifficulty==="Any" ? true : false} onChange={changeCheckedValue} />
                                     <span className="main__button_span">Любая</span>
                                 </label>
                                 <label className='button main__button main__button_type_radio' htmlFor='easy'>
-                                    <input className="main__button_type_radio-main" type="radio" id='easy' value='Easy' checked={checkedValue==="Easy" ? true : false} onChange={changeCheckedValue} />
+                                    <input className="main__button_type_radio-main" type="radio" id='easy' value='Easy' checked={searchByDifficulty==="Easy" ? true : false} onChange={changeCheckedValue} />
                                     <span className="main__button_span">Низкая</span>
                                 </label>
                                 <label className='button main__button main__button_type_radio' htmlFor='medium'>
-                                    <input className="main__button_type_radio-main" type="radio" id='medium' value='Medium' checked={checkedValue==="Medium" ? true : false} onChange={changeCheckedValue}/>
+                                    <input className="main__button_type_radio-main" type="radio" id='medium' value='Medium' checked={searchByDifficulty==="Medium" ? true : false} onChange={changeCheckedValue}/>
                                     <span className="main__button_span">Средняя</span>
                                 </label>
                                 <label className='button button_inactive main__button main__button_type_radio' htmlFor='high'>
-                                    <input className="main__button_type_radio-main" type="radio" id='high' value='High' checked={checkedValue==="High" ? true : false} onChange={changeCheckedValue}/>
+                                    <input className="main__button_type_radio-main" type="radio" id='high' value='High' checked={searchByDifficulty==="High" ? true : false} onChange={changeCheckedValue}/>
                                     <span className="main__button_span">Высокая</span>
                                 </label>
                             </div>
                         </div>
-                        <button className={`button ${ isButtonInactive && 'button_inactive'} main__button main__button_type_resert`} onClick={refreshFilter} type='button'>Сбросить все фильтры</button>
+                        <button className={`button ${ isResetButtonInactive && 'button_inactive'} main__button main__button_type_resert`} onClick={refreshFilter} type='button'>Сбросить все фильтры</button>
                     </div>
 
                     <div className='main__wrapper main__wrapper_type_luck'>

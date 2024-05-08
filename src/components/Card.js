@@ -6,7 +6,6 @@ import starEmpty from '../image/star-empty.svg'
 import {Link} from "react-router-dom";
 
 function Card(props) {
-    // console.log(props.allData)
 
     return(
         <div className="card">

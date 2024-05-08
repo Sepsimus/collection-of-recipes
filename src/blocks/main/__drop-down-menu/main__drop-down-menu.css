@@ -1,7 +1,24 @@
 .main__drop-down-menu{
+    pointer-events: none;
+    background: #FFFFFF;
     visibility: hidden;
+    opacity: 0;
     height: 0px;
     width: 0px;
     margin: 0px;
     padding: 0px;
+    height: 264px;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-width: 285px;
+    width: 100%;
+}
+
+.main__drop-down-menu::-webkit-scrollbar{
+    width: 5px;
+    background-color: #F0F0F0;
+}
+
+.main__drop-down-menu::-webkit-scrollbar-thumb{
+    background-color: #0000000F;
 }

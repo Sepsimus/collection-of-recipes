@@ -1,0 +1,4 @@
+.main__button_type_drop-down-menu-open::before{
+    transform: rotate(-180deg);
+    transition:  all 0.6s ease 0s;
+}

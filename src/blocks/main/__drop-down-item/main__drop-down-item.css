@@ -1,0 +1,9 @@
+.main__drop-down-item{
+    margin: 0px;
+    padding: 5px 12px;
+}
+
+.main__drop-down-item:hover{
+    cursor: pointer;
+    background: #F5F5F5;
+}

@@ -11,7 +11,7 @@ class mainApi {
     }
 
     getAllRecipes(){
-        return fetch(`${this._baseUrl}/recipes`, {
+        return fetch(`${this._baseUrl}/recipes?limit=100`, {
             method: 'GET',
             headers:{
                 "Content-Type": "application/json",
