@@ -3,7 +3,7 @@ import mainApi from "../utils/mainApi";
 import Dish from "./Dish";
 import Main from "./Main";
 import { Routes, Route} from "react-router-dom";
-import Loader from "./Loading";
+import Loader from "./Loader";
 
 function App() {
   const recipesApi = new mainApi({
