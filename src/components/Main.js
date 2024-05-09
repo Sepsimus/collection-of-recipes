@@ -18,7 +18,7 @@ function Main(){
     let lastPageNumber = Math.ceil(recipes.length/6);
     let isResetButtonInactive = (searchByDifficulty === 'Any' && searchByMeal === 'All types' && searchByCountry==="All country") ? true : false;
 
-    console.log(cashRecipes)
+    // console.log(cashRecipes)
 
     let mealTypesArray = [];
     let countryTypesArray = [];
