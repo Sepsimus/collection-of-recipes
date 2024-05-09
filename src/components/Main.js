@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 function Main(){
 
-    const cashRecipes = JSON.parse(localStorage.getItem('recipes')).recipes;
+    const [cashRecipes, setCashRecipes] = useState(JSON.parse(localStorage.getItem('recipes')).recipes || {});
     const [page, setPage] = useState(0);
     const [isSecondMenuOpen, setIsSecondMenuOpen] = useState(false);
     const [isFirstMenuOpen, setIsFirstMenuOpen] = useState(false);
@@ -17,6 +17,8 @@ function Main(){
     const [randomMainImage, setRandomMainImage] = useState('');
     let lastPageNumber = Math.ceil(recipes.length/6);
     let isResetButtonInactive = (searchByDifficulty === 'Any' && searchByMeal === 'All types' && searchByCountry==="All country") ? true : false;
+
+    console.log(cashRecipes)
 
     let mealTypesArray = [];
     let countryTypesArray = [];

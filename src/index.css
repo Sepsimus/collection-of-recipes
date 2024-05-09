@@ -106,3 +106,6 @@ body{
 @import url(./blocks/dish/__button/_type/dish__button_type_next.css);
 @import url(./blocks/dish/__button/_type/dish__button_type_pagination.css);
 @import url(./blocks/dish/__button/_type/dish__button_type_prev.css);
+
+@import url(./blocks/loader/loader.css);
+@import url(./blocks/loader/__loading/loader__loading.css);
