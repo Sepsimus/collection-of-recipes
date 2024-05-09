@@ -14,7 +14,7 @@ function Main(){
     const [searchByMeal, setSearchByMeal] = useState(sessionStorage.getItem('searchByMeal') || 'All types');
     const [searchByCountry, setSearchByCountry] = useState(sessionStorage.getItem('searchByCountry') || 'All country');
     const [recipes, setRecipes] = useState(cashRecipes || {});
-    let randomMainImage = cashRecipes[2].image;
+    const [randomMainImage, setRandomMainImage] = useState('');
     let lastPageNumber = Math.ceil(recipes.length/6);
     let isResetButtonInactive = (searchByDifficulty === 'Any' && searchByMeal === 'All types' && searchByCountry==="All country") ? true : false;
 
@@ -35,13 +35,13 @@ function Main(){
     }
 
     function changeSecondMenuState(event){
-        event.stopPropagation()
+        event.stopPropagation();
         setIsSecondMenuOpen(!isSecondMenuOpen);
         setIsFirstMenuOpen(false);
     }
 
     function changeFirstMenuState(event){
-        event.stopPropagation()
+        event.stopPropagation();
         setIsFirstMenuOpen(!isFirstMenuOpen);
         setIsSecondMenuOpen(false);
     }
@@ -70,13 +70,22 @@ function Main(){
     }, [searchByDifficulty, searchByMeal, searchByCountry])
 
     useEffect(() => {
+        if(recipes.length <= 0){
+            return
+        }
+        setRandomMainImage(recipes[Math.floor(Math.random() * recipes.length)].image)
+    },[recipes])
+
+    useEffect(() => {
         setPage(parseInt(sessionStorage.getItem('page')) || 0);
     },[])
 
     function refreshFilter(){
         setSearchByDifuclt('Any');
         setSearchByMeal('All types');
-        setSearchByCountry('All country')
+        setSearchByCountry('All country');
+        setIsFirstMenuOpen(false);
+        setIsSecondMenuOpen(false);
     }
 
     function rememberPagiPage(page){
@@ -112,20 +121,40 @@ function Main(){
 
     function paginationDraw(currentPage){
         let paginationArray = [];
-        
+        console.log('lastPage:'+lastPageNumber)
+        // console.log(currentPage);
         let startPage;
-        currentPage < 1 ? startPage = 2 : startPage = currentPage - 1;
+        currentPage <= 2 ? startPage = 2 : startPage = currentPage - 1;
         let endPage;
         startPage + 4 >= (lastPageNumber - 1) ? endPage = lastPageNumber - 1 : endPage = startPage + 4;
+        console.log('startPage'+startPage)
+        if (startPage > lastPageNumber - 4 && lastPageNumber - 4 > 2) startPage = lastPageNumber - 4;
+        if(lastPageNumber < 8){
+            startPage = 2;
+        }
         for(let i = startPage; i <= endPage; i++){
             paginationArray.push(
             <button className={`button main__button ${page === i-1 && 'button_pagination_active'} main__button_type_pagination main__button_type_visible-number-of-page`} onClick={(e) => {rememberPagiPage(i-1)}} key={i}>{i}</button>
             )
         }
-        if(currentPage - 1 > 2) {
-            paginationArray.unshift(<div className="main__dots"  key={-2} />)
-            paginationArray.push(<div className="main__dots" key={-1}/>)
+
+        // if(paginationArray.length < 5){
+        //     paginationArray.unshift(
+        //         <button className={`button main__button ${page === startPage-2 && 'button_pagination_active'} main__button_type_pagination main__button_type_visible-number-of-page`} onClick={(e) => {rememberPagiPage(startPage-2)}} key={startPage-1}>{startPage-1}</button>
+        //         )
+        // }
+
+        // if((currentPage - 1 > 2) && (currentPage < lastPageNumber - 3)) {
+        //     paginationArray.unshift(<div className="main__dots main__dots_type_first"  key={-2} />)
+        //     paginationArray.push(<div className="main__dots main__dots_type_last" key={-1}/>)
+        // } else 
+        
+        if (startPage > 2) {
+            paginationArray.unshift(<div className="main__dots main__dots_type_first"  key={-2} />)
         }
+        if(!(endPage > lastPageNumber-2) ) {
+            paginationArray.push(<div className="main__dots main__dots_type_last" key={-1}/>)
+        } 
         return(paginationArray)
     }
 
@@ -191,21 +220,24 @@ function Main(){
 
                     <div className='main__wrapper main__wrapper_type_luck'>
                         <h5 className='main__title-h5'>А еще можно попробовать на вкус удачу</h5>
-                        <Link className='button main__button main__button_type_luck' to='/dish' state={recipes[Math.floor(Math.random() * recipes.length)]}>Мне повезёт!</Link>
+                        <Link className={`button ${recipes.length <= 0 && 'button_inactive'} main__button main__button_type_luck`} to='/dish' state={recipes[Math.floor(Math.random() * recipes.length)]}>Мне повезёт!</Link>
                     </div>
                 </section>
 
                 <section className="main__recipes" id={"recipes"}>
-                    <h2 className="main__title-h2">Найденные рецепты<span className="main__number-recipes">{recipes.length}</span></h2>
+                    <div className="main__header">
+                        <h2 className="main__title-h2">Найденные рецепты</h2>
+                        <p className="main__number-recipes">{recipes.length}</p>
+                    </div>
                     <Cards 
                         recipes={recipes}
                         page={page}/>
                     <div className="main__pagination">
                         <button className={`button main__button main__button_type_pagination main__button_type_prev  ${page ===  0 && "button_inactive"}`} onClick={(e) => {rememberPagiPage(page-1)}}></button>
                         <button className={`button ${page === 0 && 'button_pagination_active'} main__button main__button_type_pagination main__button_type_first-page`} onClick={(e) => {rememberPagiPage(0)}}>1</button>
-                        {paginationDraw(0)}
-                        <button className={`button main__button ${page === lastPageNumber - 1 && 'button_pagination_active'} main__button_type_pagination main__button_type_last-page`} onClick={(e) => {rememberPagiPage(lastPageNumber - 1)}}>{lastPageNumber}</button>
-                        <button className={`button main__button main__button_type_pagination main__button_type_next ${page ===  lastPageNumber - 1 && "button_inactive"}`} onClick={(e) => {rememberPagiPage(page+1)}}></button>
+                        {paginationDraw(page)}
+                        <button className={`button main__button ${lastPageNumber < 2 && 'button_none'} ${page === lastPageNumber - 1 && 'button_pagination_active'} main__button_type_pagination main__button_type_last-page`} onClick={(e) => {rememberPagiPage(lastPageNumber - 1)}}>{lastPageNumber}</button>
+                        <button className={`button main__button main__button_type_pagination main__button_type_next ${((page ===  lastPageNumber - 1) || (lastPageNumber <= 0)) && "button_inactive"}`} onClick={(e) => {rememberPagiPage(page+1)}}></button>
                     </div>
                 </section>
             </div>

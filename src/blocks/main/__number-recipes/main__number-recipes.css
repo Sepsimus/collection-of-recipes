@@ -1,7 +1,8 @@
 .main__number-recipes{
+    margin: 0px;
     margin-left: 12px;
     font-family: "Roboto", "Arial", sans-serif;
-    line-height: 22px;
+    /* line-height: 22px; */
     font-size: 14px;
     font-weight: 400;
     opacity: 0.45;

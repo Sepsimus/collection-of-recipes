@@ -16,6 +16,10 @@ body{
   color: #1890FF
 }
 
+.button_none{
+  display: none
+}
+
 @import url(./vendor/normalize.css);
 
 @import url(./vendor/font.css);
@@ -40,6 +44,7 @@ body{
 @import url(./blocks/main/__button/_type/main__button_type_drop-down-menu-open.css);
 @import url(./blocks/main/__dots/main__dots.css);
 @import url(./blocks/main/__description/main__description.css);
+@import url(./blocks/main/__header/main__header.css);
 @import url(./blocks/main/__logo/main__logo.css);
 @import url(./blocks/main/__title-h4/main__title-h4.css);
 @import url(./blocks/main/__title-h5/main__title-h5.css);

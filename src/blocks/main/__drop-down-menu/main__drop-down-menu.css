@@ -7,11 +7,15 @@
     width: 0px;
     margin: 0px;
     padding: 0px;
-    height: 264px;
     overflow: scroll;
     overflow-x: hidden;
     max-width: 285px;
     width: 100%;
+    list-style: none;
+    position: absolute;
+    top: 38px;
+    left: 0px;
+    transition: all 0.6s ease 0s;
 }
 
 .main__drop-down-menu::-webkit-scrollbar{
