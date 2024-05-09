@@ -66,7 +66,7 @@ function Main(){
         }
         setRecipes(filteredRecipes);
         setPage(0);
-        sessionStorage.setItem('page', page);
+        // sessionStorage.setItem('page', page);
     }, [searchByDifficulty, searchByMeal, searchByCountry])
 
     useEffect(() => {
@@ -74,6 +74,7 @@ function Main(){
             return
         }
         setRandomMainImage(recipes[Math.floor(Math.random() * recipes.length)].image)
+        sessionStorage.setItem('filteredRecipes', JSON.stringify(recipes));
     },[recipes])
 
     useEffect(() => {
@@ -86,6 +87,7 @@ function Main(){
         setSearchByCountry('All country');
         setIsFirstMenuOpen(false);
         setIsSecondMenuOpen(false);
+        setPage(0);
     }
 
     function rememberPagiPage(page){
@@ -121,13 +123,13 @@ function Main(){
 
     function paginationDraw(currentPage){
         let paginationArray = [];
-        console.log('lastPage:'+lastPageNumber)
+        // console.log('lastPage:'+lastPageNumber)
         // console.log(currentPage);
         let startPage;
         currentPage <= 2 ? startPage = 2 : startPage = currentPage - 1;
         let endPage;
         startPage + 4 >= (lastPageNumber - 1) ? endPage = lastPageNumber - 1 : endPage = startPage + 4;
-        console.log('startPage'+startPage)
+        // console.log('startPage'+startPage)
         if (startPage > lastPageNumber - 4 && lastPageNumber - 4 > 2) startPage = lastPageNumber - 4;
         if(lastPageNumber < 8){
             startPage = 2;

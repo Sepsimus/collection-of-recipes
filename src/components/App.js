@@ -9,7 +9,6 @@ function App() {
     baseUrl: 'https://dummyjson.com'
   })
 
-
   useEffect(() => {
     recipesApi.getAllRecipes()
     .then((recipes) => {
