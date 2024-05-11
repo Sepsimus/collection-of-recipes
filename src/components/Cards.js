@@ -2,8 +2,6 @@ import Card from "./Card";
 
 function Cards(props) {
     
-    // const recipes = JSON.parse(localStorage.getItem('recipes')).recipes;
-
     function cardDraw(page){
         let cardsArray = [];
         for(let i = (page * 6); i < (page * 6 + 6); i++){
